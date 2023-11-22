@@ -13,7 +13,7 @@ public class DashboardController {
     private DashboardApiService service;
 
     @GetMapping("/api")
-    public Object getAllData(){
-        return service.getDashboardData();
+    public DashboardDto getAllData(){
+        return service.callApi();
     }
 }

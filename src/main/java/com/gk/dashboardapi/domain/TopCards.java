@@ -1,5 +1,6 @@
 package com.gk.dashboardapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,12 +12,15 @@ public class TopCards {
     private Integer id;
 
     @Column(name = "header")
+    @JsonProperty("header")
     private String header;
 
     @Column(name = "sub_header")
+    @JsonProperty("sub_header")
     private String subHeader;
 
     @Column(name = "value")
+    @JsonProperty("value")
     private Integer value;
 
     public TopCards(Integer id, String header, String subHeader, Integer value) {

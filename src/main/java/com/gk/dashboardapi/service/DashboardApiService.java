@@ -14,9 +14,10 @@ public class DashboardApiService {
     private RestTemplate restTemplate;
 
     private static final String url="https://1.api.fy23ey05.careers.ifelsecloud.com/";
-    public Object getDashboardData(){
+    public DashboardDto getDashboardData(){
         try {
-            return restTemplate.getForObject(url, Object.class);
+            DashboardDto data = restTemplate.getForObject(url, DashboardDto.class);
+            return data;
 
         }catch (Exception e){
             throw new ResponseStatusException(
@@ -25,6 +26,10 @@ public class DashboardApiService {
                     e
             );
         }
+    }
+    public DashboardDto callApi(){
+        DashboardDto data = getDashboardData();
+        return data;
     }
 
 

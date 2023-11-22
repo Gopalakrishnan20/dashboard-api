@@ -1,5 +1,6 @@
 package com.gk.dashboardapi.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gk.dashboardapi.domain.NewUsers;
 import com.gk.dashboardapi.domain.RecentOrders;
 import com.gk.dashboardapi.domain.TopCards;
@@ -8,49 +9,54 @@ import java.util.List;
 
 public class DashboardDto {
 
-    private List<TopCards> listOfTopCards;
-    private List<NewUsers> listOfNewUsers;
-    private List<RecentOrders>listOfRecentOrders;
+    @JsonProperty("top_cards")
+    private List<TopCards> top_cards;
 
-    public DashboardDto(List<TopCards> listOfTopCards, List<NewUsers> listOfNewUsers, List<RecentOrders> listOfRecentOrders) {
-        this.listOfTopCards = listOfTopCards;
-        this.listOfNewUsers = listOfNewUsers;
-        this.listOfRecentOrders = listOfRecentOrders;
+    @JsonProperty("new_users")
+    private List<NewUsers> new_users;
+
+    @JsonProperty("recent_orders")
+    private List<RecentOrders>recent_orders;
+
+    public DashboardDto(List<TopCards> top_cards, List<NewUsers> new_users, List<RecentOrders> recent_orders) {
+        this.top_cards = top_cards;
+        this.new_users = new_users;
+        this.recent_orders = recent_orders;
+    }
+
+    public List<TopCards> getTop_cards() {
+        return top_cards;
+    }
+
+    public void setTop_cards(List<TopCards> top_cards) {
+        this.top_cards = top_cards;
+    }
+
+    public List<NewUsers> getNew_users() {
+        return new_users;
+    }
+
+    public void setNew_users(List<NewUsers> new_users) {
+        this.new_users = new_users;
+    }
+
+    public List<RecentOrders> getRecent_orders() {
+        return recent_orders;
+    }
+
+    public void setRecent_orders(List<RecentOrders> recent_orders) {
+        this.recent_orders = recent_orders;
     }
 
     public DashboardDto() {
     }
 
-    public List<TopCards> getListOfTopCards() {
-        return listOfTopCards;
-    }
-
-    public void setListOfTopCards(List<TopCards> listOfTopCards) {
-        this.listOfTopCards = listOfTopCards;
-    }
-
-    public List<NewUsers> getListOfNewUsers() {
-        return listOfNewUsers;
-    }
-
-    public void setListOfNewUsers(List<NewUsers> listOfNewUsers) {
-        this.listOfNewUsers = listOfNewUsers;
-    }
-
-    public List<RecentOrders> getListOfRecentOrders() {
-        return listOfRecentOrders;
-    }
-
-    public void setListOfRecentOrders(List<RecentOrders> listOfRecentOrders) {
-        this.listOfRecentOrders = listOfRecentOrders;
-    }
-
     @Override
     public String toString() {
         return "DashboardDto{" +
-                "listOfTopCards=" + listOfTopCards +
-                ", listOfNewUsers=" + listOfNewUsers +
-                ", listOfRecentOrders=" + listOfRecentOrders +
+                "top_cards=" + top_cards +
+                ", new_users=" + new_users +
+                ", recent_orders=" + recent_orders +
                 '}';
     }
 }

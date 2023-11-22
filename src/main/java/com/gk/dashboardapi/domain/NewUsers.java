@@ -1,5 +1,6 @@
 package com.gk.dashboardapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,21 +8,27 @@ import jakarta.persistence.*;
 public class NewUsers {
 
     @Id
+    @JsonProperty("id")
     private String id;
 
     @Column(name = "picture")
+    @JsonProperty("picture")
     private String picture;
 
     @Column(name = "name")
+    @JsonProperty("name")
     private String name;
 
     @Column(name = "isActive")
+    @JsonProperty("isActive")
     private Boolean isActive;
 
     @Column(name = "country")
+    @JsonProperty("country")
     private String country;
 
     @Column(name = "progress")
+    @JsonProperty("progress")
     private Integer progress;
 
     public NewUsers(String id, String picture, String name, Boolean isActive, String country, Integer progress) {

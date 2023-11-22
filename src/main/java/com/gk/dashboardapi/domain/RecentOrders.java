@@ -1,5 +1,6 @@
 package com.gk.dashboardapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -12,18 +13,31 @@ import java.time.LocalDateTime;
 @Table(name = "recent_orders")
 public class RecentOrders {
     @Id
+    @JsonProperty("id")
     private String id;
+
     @Column(name = "Name")
+    @JsonProperty("name")
     private String name;
+
     @Column(name = "Product")
+    @JsonProperty("product")
     private String product;
+
     @Column(name = "Delivery_Date")
+    @JsonProperty("delivery_date")
     private LocalDateTime delivery_date;
-    @Column(name = "Status")
+
+    @Column(name = "status")
+    @JsonProperty("status")
     private String status;
-    @Column(name = "Tracking_no.")
+
+    @Column(name = "tracking_no")
+    @JsonProperty("tracking_no")
     private String tracking_no;
-    @Column(name = "Shipping")
+
+    @Column(name = "shipping")
+    @JsonProperty("shipping")
     private boolean shipping;
 
     public RecentOrders() {
