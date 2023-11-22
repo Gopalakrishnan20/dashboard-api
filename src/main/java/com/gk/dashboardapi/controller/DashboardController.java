@@ -1,5 +1,6 @@
 package com.gk.dashboardapi.controller;
 
+import com.gk.dashboardapi.dto.DashboardDto;
 import com.gk.dashboardapi.service.DashboardApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,7 @@ public class DashboardController {
     private DashboardApiService service;
 
     @GetMapping("/api")
-    public Object getAllData(){
+    public DashboardDto getAllData(){
         return service.getDashboardData();
     }
 }
