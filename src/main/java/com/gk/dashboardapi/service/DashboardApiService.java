@@ -4,6 +4,7 @@ import com.gk.dashboardapi.domain.NewUsers;
 import com.gk.dashboardapi.domain.RecentOrders;
 import com.gk.dashboardapi.domain.TopCards;
 import com.gk.dashboardapi.dto.DashboardDto;
+import com.gk.dashboardapi.proxy.DashboardApiServiceProxy;
 import com.gk.dashboardapi.repository.NewUsersRepository;
 import com.gk.dashboardapi.repository.RecentOrdersRepository;
 import com.gk.dashboardapi.repository.TopCardsRepository;
@@ -26,6 +27,8 @@ public class DashboardApiService implements IdashboardApiService {
     private RecentOrdersRepository recentOrdersRepository;
     @Autowired
     private TopCardsRepository topCardsRepository;
+    @Autowired
+    private DashboardApiServiceProxy dashboardApiServiceProxy;
 
     private static final String url="https://1.api.fy23ey05.careers.ifelsecloud.com/";
     @Override
@@ -43,7 +46,7 @@ public class DashboardApiService implements IdashboardApiService {
         }
     }
     @Override
-    public DashboardDto callApi(){
+    public DashboardDto callViaRestTemplate(){
         DashboardDto data = getDashboardData();
         return data;
     }
@@ -70,5 +73,17 @@ public class DashboardApiService implements IdashboardApiService {
         return data;
 
     }
+    @Override
+    public DashboardDto callViaFeign() {
+        DashboardDto data = dashboardApiServiceProxy.fetchData();
+        return data;
+    }
+    @Override
+    public String cleanDatabase() {
+        newUsersRepository.deleteAll();
+        topCardsRepository.deleteAll();
+        recentOrdersRepository.deleteAll();
+        return("DB is clean now../fetch again to retrive data from /api");
 
+    }
 }

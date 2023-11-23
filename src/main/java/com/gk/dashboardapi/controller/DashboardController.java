@@ -13,9 +13,9 @@ public class DashboardController {
     @Autowired
     private IdashboardApiService service;
 
-    @GetMapping("/get-data")
+    @GetMapping("/fetch")
     public DashboardDto fetchAllData(){
-        DashboardDto data = service.callApi();
+        DashboardDto data = service.callViaFeign();
         service.mapToEntity(data);
         return data;
     }
@@ -23,5 +23,9 @@ public class DashboardController {
     @GetMapping("/api")
     public DashboardDto getAllData(){
         return service.getApi();
+    }
+    @GetMapping("/clean")
+    public String cleanDatabase() {
+        return service.cleanDatabase();
     }
 }
