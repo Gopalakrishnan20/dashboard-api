@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class TopCards {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "header")

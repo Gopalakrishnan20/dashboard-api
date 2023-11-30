@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service(value = "dashboardApiService")
 public class DashboardApiService implements IdashboardApiService {
@@ -85,5 +86,55 @@ public class DashboardApiService implements IdashboardApiService {
         recentOrdersRepository.deleteAll();
         return("DB is clean now../fetch again to retrive data from /api");
 
+    }
+
+    @Override
+    public NewUsers updateNewUsers(NewUsers newUsers, String id) {
+        if(newUsersRepository.findAll().isEmpty()){
+            return null;
+        }
+        newUsersRepository.deleteById(id);
+        NewUsers newData = new NewUsers(
+                id,
+                newUsers.getPicture(),
+                newUsers.getName(),
+                newUsers.getActive(),
+                newUsers.getCountry(),
+                newUsers.getProgress());
+
+        return newUsersRepository.save(newData);
+    }
+
+    @Override
+    public RecentOrders updateRecentOrders(RecentOrders recentOrders,String id) {
+        if(recentOrdersRepository.findAll().isEmpty()){
+            return null;
+        }
+        recentOrdersRepository.deleteById(id);
+        RecentOrders newData = new RecentOrders(
+                id,
+                recentOrders.getName(),
+                recentOrders.getProduct(),
+                recentOrders.getDelivery_date(),
+                recentOrders.getStatus(),
+                recentOrders.getTracking_no(),
+                recentOrders.isShipping()
+        );
+        return recentOrdersRepository.save(newData);
+    }
+
+    @Override
+    public TopCards updateTopCards(TopCards topCards, Integer id) {
+        if(topCardsRepository.findAll().isEmpty()){
+            return null;
+        }
+        topCardsRepository.deleteById(id);
+        TopCards newData = new TopCards(
+                id,
+                topCards.getHeader(),
+                topCards.getSubHeader(),
+                topCards.getValue()
+        );
+        return topCardsRepository.save(newData);
     }
 }
